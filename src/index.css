@@ -1,0 +1,383 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    background-color: #070a12;
+    color: #f8fafc;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Custom smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Utility for hiding scrollbar in horizontal scroll strips while keeping scroll functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Glassmorphism & Visual Tokens */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes softPulse {
+  0%, 100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.8));
+  }
+}
+
+.animate-glow {
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+@keyframes liveMarkerPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px #f43f5e;
+  }
+  50% {
+    transform: scale(1.25);
+    box-shadow: 0 0 18px #f43f5e, 0 0 30px #f43f5e;
+  }
+}
+
+.animate-live-dot {
+  animation: liveMarkerPulse 2s ease-in-out infinite;
+}
+
+/* Celestial Orbiting Ring */
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbitSpin 24s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbitSpin 36s linear infinite reverse;
+}
+
+/* Deep Focus Breathing Aura */
+@keyframes auraBreathe {
+  0%, 100% {
+    transform: scale(0.92);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.7;
+  }
+}
+
+.animate-aura {
+  animation: auraBreathe 4s ease-in-out infinite;
+}
+
+/* Ripple Waves */
+@keyframes rippleWave {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: rippleWave 3s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.animate-ripple-delayed {
+  animation: rippleWave 3s cubic-bezier(0, 0.2, 0.8, 1) 1.5s infinite;
+}
+
+/* Sound wave frequency equalizer bars */
+@keyframes soundBar {
+  0%, 100% {
+    height: 4px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+
+.animate-sound-1 {
+  animation: soundBar 1.2s ease-in-out infinite;
+}
+.animate-sound-2 {
+  animation: soundBar 0.9s ease-in-out 0.2s infinite;
+}
+.animate-sound-3 {
+  animation: soundBar 1.4s ease-in-out 0.4s infinite;
+}
+.animate-sound-4 {
+  animation: soundBar 1.1s ease-in-out 0.1s infinite;
+}
+
+/* Screen Dimmer / Spotlight focus styles */
+.screen-dim-target {
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.screen-dimmed {
+  opacity: 0.18 !important;
+  filter: blur(1.5px) grayscale(40%) !important;
+}
+.screen-dimmed:hover {
+  opacity: 0.85 !important;
+  filter: none !important;
+}
+
+/* Spotlight container elevation */
+.focus-elevated {
+  position: relative;
+  z-index: 30;
+  box-shadow: 0 0 50px -10px rgba(139, 92, 246, 0.4), 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+}
+
+/* Antique Clock Animations */
+@keyframes pendulumSwing {
+  0% {
+    transform: rotate(-9.5deg);
+  }
+  50% {
+    transform: rotate(9.5deg);
+  }
+  100% {
+    transform: rotate(-9.5deg);
+  }
+}
+
+.animate-pendulum {
+  animation: pendulumSwing 2.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  transform-origin: top center;
+}
+
+/* Countdown Timer Micro-Animations & Chronometer Aesthetics */
+@keyframes digitRoll {
+  0% {
+    transform: translateY(-24%) scale(0.96);
+    opacity: 0.2;
+    filter: blur(1.5px);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-digit-roll {
+  animation: digitRoll 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes timerHeartbeat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.018);
+  }
+  30% {
+    transform: scale(0.995);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-timer-tick {
+  animation: timerHeartbeat 1s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes colonPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(0.88);
+  }
+}
+
+.animate-colon-blink {
+  animation: colonPulse 1s ease-in-out infinite;
+}
+
+.animate-colon-fast {
+  animation: colonPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes urgencyPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3), inset 0 0 8px rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.7), inset 0 0 16px rgba(245, 158, 11, 0.35);
+    border-color: rgba(245, 158, 11, 0.9);
+    transform: scale(1.02);
+  }
+}
+
+.animate-urgency {
+  animation: urgencyPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes overtimeFlash {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.7));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(239, 68, 68, 0.9));
+    transform: scale(1.025);
+  }
+}
+
+.animate-overtime-flash {
+  animation: overtimeFlash 1.5s ease-in-out infinite;
+}
+
+@keyframes floatAndFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px) scale(0.85);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -2px) scale(1.08);
+  }
+  75% {
+    opacity: 0.95;
+    transform: translate(-50%, -18px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -32px) scale(0.9);
+  }
+}
+
+.animate-float-fade {
+  animation: floatAndFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes cometSparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+.animate-comet-sparkle {
+  animation: cometSparkle 1.2s ease-in-out infinite;
+}
+
+@keyframes sectorGlowBreathe {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.animate-sector-breathe {
+  animation: sectorGlowBreathe 3s ease-in-out infinite;
+}
+
+/* Glass digit pod styling */
+.timer-digit-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 14px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.timer-digit-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
